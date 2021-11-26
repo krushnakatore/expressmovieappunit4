@@ -1,0 +1,120 @@
+1) To find by equals to
+    db.user.find({"movie_name":{$eq:"Adiana"}}).pretty()
+ { "_id" : ObjectId("619d33cca267cfc7abbd5352"),  
+"id" : 347,
+"movie_name" : "Adiana",
+"movie-genre" : "Brisbane", 
+ "production_year" : 1998, budget" : 15481 
+}    
+
+2) To find not equals to
+    db.user.find({"movie_name":{$ne:"Adiana"}}).pretty() 
+{ "_id" : ObjectId("619d33cca267cfc7abbd5340"),
+"id" : 310,
+"movie_name" : "Pen",
+"movie-genre" : "Harnell",
+  "production_year" : 1997,
+ "budget" : 19197  
+ } 
+{ "_id" : ObjectId("619d33cca267cfc7abbd5341"),
+ "id" : 149,
+ "movie_name" : "Chick", 
+"movie-genre" : "Aggio", 
+"production_year" : 1992,  
+"budget" : 19000 
+} 
+{ "_id" : ObjectId("619d33cca267cfc7abbd5342"), 
+ "id" : 199, 
+ "movie_name" : "Elinor",
+  "movie-genre" : "Burrows",
+   "production_year" : 1993,  
+ "budget" : 17297    
+}   {    "_id" : ObjectId("619d33cca267cfc7abbd5343"),  
+ "id" : 57,   
+"movie_name" : "Tally",   
+ "movie-genre" : "Spens",   
+"production_year" : 2000,    
+"budget" : 19539  
+ }                                                                                    
+
+3)To find greater than equals to
+ db.user.find({"budget":{$gte:15000}}).pretty()
+{
+        "_id" : ObjectId("619d33cca267cfc7abbd5340"),
+        "id" : 310,
+        "movie_name" : "Pen",
+        "movie-genre" : "Harnell",
+        "production_year" : 1997,
+        "budget" : 19197
+}
+
+4) To find less than and less than equals to
+db.user.find({"budget":{$lte:15000}}).pretty()
+{
+        "_id" : ObjectId("619d33cca267cfc7abbd5344"),
+        "id" : 226,
+        "movie_name" : "Nathanil",
+        "movie-genre" : "Waddup",
+        "production_year" : 1994,
+        "budget" : 9430
+}
+
+5) To find budget greater than 10000 and prd year grt thn 2000
+ db.user.find({$and:[{"production_year":{$gt:2000}},{"budget":{$gt:10000}}]}).pretty()
+{
+        "_id" : ObjectId("619f1a048eb7212c55784fa9"),
+        "movie_name" : "Hermina",
+        "movie_genre" : "Wells Fargo & Company",
+        "production_year" : 2006,
+        "budget" : 14887
+}
+
+6) To find budget greater than 10000 or prd year grt thn 2000
+ db.user.find({$or:[{"production_year":{$gt:2000}},{"budget":{$gt:10000}}]}).pretty()
+{
+        "_id" : ObjectId("619f15cb1fd0cf593fa8950c"),
+        "movie_name" : "Delladonna",
+        "movie_genre" : "First Internet Bancorp",
+        "production_year" : 2000,
+        "budget" : 18282
+}
+{
+        "_id" : ObjectId("619f15cb1fd0cf593fa8950d"),
+        "movie_name" : "Eastlawn",
+        "movie_genre" : "Revlon, Inc.",
+        "production_year" : 1999,
+        "budget" : 13065
+}
+
+7) To find budget neither grt thn 10000 nor prd year grt than 2000
+db.user.find({$or:[{"production_year":{$lt:2000}},{"budget":{$lt:10000}}]}).pretty()
+{
+        "_id" : ObjectId("619f15cb1fd0cf593fa8950d"),
+        "movie_name" : "Eastlawn",
+        "movie_genre" : "Revlon, Inc.",
+        "production_year" : 1999,
+        "budget" : 13065
+}
+
+8)ind all movies that are not produced in 2000 or they do not have budget of 10000
+ db.user.find({$or:[{"production_year":{$ne:2000}},{"budget":{$ne:10000}}]}).pretty()
+{
+        "_id" : ObjectId("619f15cb1fd0cf593fa8950c"),
+        "movie_name" : "Delladonna",
+        "movie_genre" : "First Internet Bancorp",
+        "production_year" : 2000,
+        "budget" : 18282
+}
+
+9)find all movies that were produced from 2000 to 2010.
+ db.user.find({$and:[{"production_year":{$gt:2000}},{"production_year":{$lt:2010}}]}).pretty()
+{
+        "_id" : ObjectId("619f1a048eb7212c55784fa9"),
+        "movie_name" : "Hermina",
+        "movie_genre" : "Wells Fargo & Company",
+        "production_year" : 2006,
+        "budget" : 14887
+}
+
+10)Sort all movies descending based on the production year and if the year is same then alphabetically for their movie_names
+
